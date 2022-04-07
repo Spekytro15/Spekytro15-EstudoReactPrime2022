@@ -1,13 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+
+import { DataTable } from 'primereact/datatable';
+import { Column } from 'primereact/column';
+
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.css';
 
 
 export function Home(){
-  return (
-    <div className="App">
-      <header className="App-header">
-      <h1>Olá mundo</h1>
-      </header>
-    </div>
-  );
+    
+    return (
+        <div className="surface-card p-4 border-round shadow-2">
+            <div className="text-3xl text-800 font-bold mb-4">Crud</div>
+
+            <DataTable dataKey="id"  rows={10} responsiveLayout="scroll">
+
+                <Column selectionMode="multiple" headerStyle={{ width: '1rem' }} exportable={false}></Column>
+                <Column field="Id" header="Id"  style={{ minWidth: '1rem' }}></Column>
+                <Column field="codigo" header="codigo"  style={{ minWidth: '1rem' }}></Column>
+                <Column field="nome" header="nome" ></Column>
+                <Column field="data" header="data denacimento"  style={{ minWidth: '3rem' }}></Column>
+                <Column field="data" header="Ativo"  style={{ minWidth: '1rem' }}></Column>
+                
+            </DataTable>
+
+           
+        </div>
+    )
+
+    
 }
 
