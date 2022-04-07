@@ -1,14 +1,8 @@
 import React from 'react';
-
+import {Home} from './pages/home'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      <h1>Olá mundo</h1>
-      </header>
-    </div>
-  );
+  return (<Home/>);
 }
 
 export default App;
