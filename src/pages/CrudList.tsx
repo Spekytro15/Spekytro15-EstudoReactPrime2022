@@ -3,9 +3,10 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-
+import { Badge } from 'primereact/badge';
 import { CrudForm } from "./CrudForm";
 import { CrudService } from "../services/CrudService";
+import {MENU} from "./Home"
 
 import { confirmDialog } from "primereact/confirmdialog"; // To use confirmDialog method
 import { Checkbox } from "primereact/checkbox";
@@ -25,7 +26,7 @@ export default function CrudList() {
   const [selectedCruds, setSelectedCruds] = useState([]);
 
   useEffect(() => {
-    // console.log(">>>selectedCruds", selectedCruds);
+     
   }, [selectedCruds]);
 
   const [selectedCrud, setSelectedCrud] = useState({});
@@ -65,11 +66,8 @@ export default function CrudList() {
       header: "Confirmation",
       icon: "pi pi-exclamation-triangle",
 
-      accept: async () => {
-        console.log(">>> save crud", rowData);
-        window.location.reload();
+      accept: async () => {  
         await crudService.PostDataCrud(rowData);
-
         setShowDialog(false);
       },
       reject: () => {
@@ -78,14 +76,12 @@ export default function CrudList() {
     });
   };
 
-  const editCrud = (rowData: any) => {
-    // console.log(">>> edit crud", rowData);
 
-    crudService.PutDataCrud(selectedCrud);
+
+  const editCrud = (rowData: any) => {
     setSelectedCrud(rowData);
     setShowDialog(true);
   };
-
   //======================
   const actionBodyTemplate = (rowData: any) => {
     return (
@@ -111,7 +107,6 @@ export default function CrudList() {
 
   const acceptDelete = () => {
     selectedCruds.map((ids) => {
-      console.log(ids);
       window.location.reload();
       crudService.DeleteDataCrud(ids);
     });
@@ -125,16 +120,22 @@ export default function CrudList() {
 
   return (
     <div>
+      
+      <div className="grid">
+    <div className="col-2"><MENU/></div>
+    <div className="col-10">
       <div className="card">
         <Button label="Novo" icon="pi pi-plus" onClick={newCrud} />
 
         <Button
+          style={{marginLeft:"2vh"}}
           label="Delete"
           icon="pi pi-trash"
           className="p-button-danger"
           onClick={confirmDeleteDialog}
           disabled={!selectedCruds || !selectedCruds.length}
-        />
+        ><Badge value={selectedCruds.length} severity="danger" ></Badge> </Button>
+        
       </div>
 
       <div className="card">
@@ -166,6 +167,7 @@ export default function CrudList() {
             ></Column>
             <Column field="jt_nome" header="Nome"></Column>
             <Column
+            
               field="jt_data_nascimento"
               header="Data Nascimento"
               style={{ minWidth: "3rem" }}
@@ -190,9 +192,12 @@ export default function CrudList() {
         <CrudForm
           dataCrud={selectedCrud}
           actionHideDialog={() => setShowDialog(false)}
-          actionOkDialog={(rowData: any) => saveCrud(rowData)}
+          actionOkDialog={(rowData: any) => saveCrud(rowData) }
         ></CrudForm>
+        
       </Dialog>
+      </div>
+</div>
     </div>
   );
 }

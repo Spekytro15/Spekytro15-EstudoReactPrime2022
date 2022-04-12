@@ -1,15 +1,10 @@
 import React from "react";
+import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
+import { Fieldset } from "primereact/fieldset";
 import { Menu } from "primereact/menu";
 import CrudList from "./CrudList";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useRoutes,
-  useHref,
-  Link,
-} from "react-router-dom";
-import { CrudForm } from "./CrudForm";
+import { PrimeIcons } from "primereact/api";
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
 
 export function MENU() {
   const items = [
@@ -17,30 +12,35 @@ export function MENU() {
       label: "Options",
       items: [
         {
-          label: "CRUD",
-          icon: "pi-eject",
+          label: "HOME",
+          icon: PrimeIcons.HOME,
           command: () => {
-            window.location.href='crud'
+            window.location.href = "/";
           },
         },
         {
-          label: "HOME",
-          icon: "pi pi-times",
+          label: "CRUD",
+          icon: PrimeIcons.PLUS,
           command: () => {
-            window.location.href='/'
+            window.location.href = "crud";
           },
-        }
+        },
       ],
     },
   ];
+  return <Menu model={items} />;
+}
+export function HomeHeder() {
   return (
-    <Menu model={items} />
+    <div>
+      <MENU />
+      <h1 style={{ textAlign: "center" }}>Bem-vindo/a</h1>
+    </div>
   );
-};
-
+}
 const App = () => {
   let routes = useRoutes([
-    { path: "/", element: <MENU/> },
+    { path: "/", element: <HomeHeder /> },
     { path: "/crud", element: <CrudList /> },
     // ...
   ]);
@@ -50,7 +50,11 @@ const App = () => {
 export function Home() {
   return (
     <Router>
-      <App />
+      <Fieldset legend="CRUD - React 2022">
+        <ConfirmDialog />
+
+        <App />
+      </Fieldset>
     </Router>
   );
 }
