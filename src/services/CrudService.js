@@ -5,24 +5,27 @@ export class CrudService {
     async getDataCrud() {
         try {
 
-            let res = await fetch('http://localhost:3000/crud-on')
+            let res = await fetch("http://localhost:3000/crud-on")
             let data = await res.json()
             return data;
         } catch (error) {
-            console.log('>>>CrudService>getDataCrud', error)
+            return {menssagem: "Erro GETDATA CRUD",
+                    error:"error"}
         }
     }
 
     async PostDataCrud(props) {
 
         if(!props.id){
+            
             let cad = {
-           
+                
                 jt_codigo: props.jt_codigo,
                 jt_nome: props.jt_nome,
                 jt_data_nascimento: props.jt_data_nascimento,
-                ativo: true
+                ativo: props.ativo
             }
+            
             try {
     
                 // POST request using fetch with error handling
@@ -35,9 +38,9 @@ export class CrudService {
                     .then(async response => {
                         const isJson = response.headers.get('content-type')?.includes('application/json');
                         const data = isJson && await response.json();
-                        console.log(data)
+                       
     
-                        return data
+                        return  window.location.reload();
                     })
                     .catch(error => {
                         this.setState({ errorMessage: error.toString() });
@@ -52,7 +55,7 @@ export class CrudService {
             jt_codigo: props.jt_codigo,
             jt_nome: props.jt_nome,
             jt_data_nascimento: props.jt_data_nascimento,
-            ativo: true
+            ativo: props.ativo
         }
         try {
 
@@ -66,9 +69,9 @@ export class CrudService {
                 .then(async response => {
                     const isJson = response.headers.get('content-type')?.includes('application/json');
                     const data = isJson && await response.json();
-                    console.log(data)
+                    
 
-                    return data
+                    return  window.location.reload();
                 })
                 .catch(error => {
                     this.setState({ errorMessage: error.toString() });
@@ -94,7 +97,7 @@ export class CrudService {
                     const data = isJson && await response.json();
                     console.log(data)
 
-                    return data
+                    return  window.location.reload();
                 })
                 .catch(error => {
                     this.setState({ errorMessage: error.toString() });

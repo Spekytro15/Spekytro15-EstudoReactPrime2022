@@ -4,9 +4,11 @@ import { Fieldset } from "primereact/fieldset";
 import { Menu } from "primereact/menu";
 import CrudList from "./CrudList";
 import { PrimeIcons } from "primereact/api";
-import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import { BrowserRouter as Router, useRoutes,useNavigate} from "react-router-dom";
+
 
 export function MENU() {
+  let navigate = useNavigate();
   const items = [
     {
       label: "Options",
@@ -15,14 +17,14 @@ export function MENU() {
           label: "HOME",
           icon: PrimeIcons.HOME,
           command: () => {
-            window.location.href = "/";
+            navigate("/");
           },
         },
         {
           label: "CRUD",
           icon: PrimeIcons.PLUS,
           command: () => {
-            window.location.href = "crud";
+            navigate("/crud");
           },
         },
       ],

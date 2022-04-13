@@ -19,7 +19,7 @@ addLocale('pt-BR', {
   dayNamesShort: ['dom', 'lun', 'mar', 'mié', 'jue', 'vie', 'sáb'],
   dayNamesMin: ['D', 'L', 'M', 'X', 'J', 'V', 'S'],
   monthNames: ['Janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
-  monthNamesShort: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'],
+  monthNamesShort: ['Jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
   today: 'Hoje',
   clear: 'Limpar',
   accept:	'Sim',

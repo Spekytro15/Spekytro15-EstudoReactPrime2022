@@ -7,7 +7,7 @@ import { Badge } from 'primereact/badge';
 import { CrudForm } from "./CrudForm";
 import { CrudService } from "../services/CrudService";
 import {MENU} from "./Home"
-
+import { Toast } from 'primereact/toast';
 import { confirmDialog } from "primereact/confirmdialog"; // To use confirmDialog method
 import { Checkbox } from "primereact/checkbox";
 
@@ -17,7 +17,7 @@ const crudService = new CrudService();
 export default function CrudList() {
   //======================
   const dt = useRef(null);
-
+  const t = useRef(Boolean);
   //======================
   const [showDialog, setShowDialog] = useState(false);
   const [dataCrud, setDataCrud] = useState([]);
@@ -75,12 +75,12 @@ export default function CrudList() {
       },
     });
   };
-
-
-
+//====================
   const editCrud = (rowData: any) => {
+    console.log(rowData)
     setSelectedCrud(rowData);
     setShowDialog(true);
+   
   };
   //======================
   const actionBodyTemplate = (rowData: any) => {
@@ -95,6 +95,7 @@ export default function CrudList() {
     );
   };
 
+  //=========
   const confirmDeleteDialog = () => {
     confirmDialog({
       message: `Deletar ${selectedCruds.length} registro(s)`,
@@ -107,7 +108,7 @@ export default function CrudList() {
 
   const acceptDelete = () => {
     selectedCruds.map((ids) => {
-      window.location.reload();
+
       crudService.DeleteDataCrud(ids);
     });
   };
